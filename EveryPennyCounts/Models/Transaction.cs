@@ -7,11 +7,15 @@ namespace EveryPennyCounts.Models
     public class Transaction
     {
         [Key]
-        public int TransactionID { get; set; }
+        public int TransactionId { get; set; }
 
         //CategoryId
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        //CategoryId
+        public int FamilyMemeberId { get; set; }
+        public FamilyMember FamilyMember { get; set; }
 
         public int Amount { get; set; }
 
