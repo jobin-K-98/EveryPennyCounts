@@ -9,67 +9,67 @@ using EveryPennyCounts.Models;
 
 namespace EveryPennyCounts.Controllers
 {
-    public class CategoryController : Controller
+    public class TransactionController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoryController(ApplicationDbContext context)
+        public TransactionController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Category
+        // GET: Transaction
         public async Task<IActionResult> Index()
         {
-            return _context.Categories != null ?
-                        View(await _context.Categories.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
+            return _context.Transactions != null ?
+                        View(await _context.Transactions.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Transactions'  is null.");
         }
 
 
-        // GET: Category/AddOrEdit
+        // GET: Transaction/AddOrEdit
         public IActionResult AddOrEdit(int id = 0)
         {
             if (id == 0)
-                return View(new Category());
+                return View(new Transaction());
             else
-                return View(_context.Categories.Find(id));
+                return View(_context.Transactions.Find(id));
 
         }
 
-        // POST: Category/AddOrEdit
+        // POST: Transaction/AddOrEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
+        public async Task<IActionResult> AddOrEdit([Bind("TransactionId,Title,Icon,Type")] Transaction Transaction)
         {
             if (ModelState.IsValid)
             {
-                if (category.CategoryId == 0)
-                    _context.Add(category);
+                if (Transaction.TransactionId == 0)
+                    _context.Add(Transaction);
                 else
-                    _context.Update(category);
+                    _context.Update(Transaction);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(Transaction);
         }
 
 
-        // POST: Category/Delete/5
+        // POST: Transaction/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Categories == null)
+            if (_context.Transactions == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Transactions'  is null.");
             }
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
+            var Transaction = await _context.Transactions.FindAsync(id);
+            if (Transaction != null)
             {
-                _context.Categories.Remove(category);
+                _context.Transactions.Remove(Transaction);
             }
 
             await _context.SaveChangesAsync();

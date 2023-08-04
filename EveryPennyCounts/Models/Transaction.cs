@@ -14,7 +14,7 @@ namespace EveryPennyCounts.Models
         public Category Category { get; set; }
 
         //CategoryId
-        public int FamilyMemeberId { get; set; }
+        public int FamilyMemberId { get; set; }
         public FamilyMember FamilyMember { get; set; }
 
         public int Amount { get; set; }

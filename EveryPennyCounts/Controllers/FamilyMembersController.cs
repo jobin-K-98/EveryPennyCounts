@@ -9,67 +9,67 @@ using EveryPennyCounts.Models;
 
 namespace EveryPennyCounts.Controllers
 {
-    public class CategoryController : Controller
+    public class FamilyMemberController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoryController(ApplicationDbContext context)
+        public FamilyMemberController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Category
+        // GET: FamilyMember
         public async Task<IActionResult> Index()
         {
-            return _context.Categories != null ?
-                        View(await _context.Categories.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
+            return _context.FamilyMembers != null ?
+                        View(await _context.FamilyMembers.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.FamilyMembers'  is null.");
         }
 
 
-        // GET: Category/AddOrEdit
+        // GET: FamilyMember/AddOrEdit
         public IActionResult AddOrEdit(int id = 0)
         {
             if (id == 0)
-                return View(new Category());
+                return View(new FamilyMember());
             else
-                return View(_context.Categories.Find(id));
+                return View(_context.FamilyMembers.Find(id));
 
         }
 
-        // POST: Category/AddOrEdit
+        // POST: FamilyMember/AddOrEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
+        public async Task<IActionResult> AddOrEdit([Bind("FamilyMemberId,Name")] FamilyMember FamilyMember)
         {
             if (ModelState.IsValid)
             {
-                if (category.CategoryId == 0)
-                    _context.Add(category);
+                if (FamilyMember.FamilyMemberId == 0)
+                    _context.Add(FamilyMember);
                 else
-                    _context.Update(category);
+                    _context.Update(FamilyMember);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(FamilyMember);
         }
 
 
-        // POST: Category/Delete/5
+        // POST: FamilyMember/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Categories == null)
+            if (_context.FamilyMembers == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.FamilyMembers'  is null.");
             }
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
+            var FamilyMember = await _context.FamilyMembers.FindAsync(id);
+            if (FamilyMember != null)
             {
-                _context.Categories.Remove(category);
+                _context.FamilyMembers.Remove(FamilyMember);
             }
 
             await _context.SaveChangesAsync();
