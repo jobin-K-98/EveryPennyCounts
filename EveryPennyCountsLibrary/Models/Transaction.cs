@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EveryPennyCounts.Models
@@ -17,7 +16,7 @@ namespace EveryPennyCounts.Models
         public int FamilyMemberId { get; set; }
         public FamilyMember FamilyMember { get; set; }
 
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
 
         [Column(TypeName = "nvarchar(75)")]
         public String? Note { get; set; }
