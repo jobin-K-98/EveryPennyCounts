@@ -10,6 +10,7 @@ namespace EveryPennyCounts.Models
         //Tables are defined in the Db Context
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<FamilyMember> FamilyMembers { get; set; }
 
     }
 }
