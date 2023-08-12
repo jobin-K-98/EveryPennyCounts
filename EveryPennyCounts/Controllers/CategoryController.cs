@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EveryPennyCounts.Models;
+using EveryPennyCountsAPI.Data;
 
 namespace EveryPennyCounts.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly EveryPennyCountsAPIContext _context;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(EveryPennyCountsAPIContext context)
         {
             _context = context;
         }

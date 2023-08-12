@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EveryPennyCountsAPI.Data;
-using EveryPennyCountsAPI.Models;
+using EveryPennyCounts.Models;
 
 namespace EveryPennyCountsAPI.Controllers
 {
@@ -25,22 +25,22 @@ namespace EveryPennyCountsAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FamilyMember>>> GetFamilyMember()
         {
-            if (_context.FamilyMember == null)
+            if (_context.FamilyMembers == null)
             {
                 return NotFound();
             }
-            return await _context.FamilyMember.ToListAsync();
+            return await _context.FamilyMembers.ToListAsync();
         }
 
         // GET: api/FamilyMembers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<FamilyMember>> GetFamilyMember(int id)
         {
-            if (_context.FamilyMember == null)
+            if (_context.FamilyMembers == null)
             {
                 return NotFound();
             }
-            var familyMember = await _context.FamilyMember.FindAsync(id);
+            var familyMember = await _context.FamilyMembers.FindAsync(id);
 
             if (familyMember == null)
             {
@@ -86,11 +86,11 @@ namespace EveryPennyCountsAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<FamilyMember>> PostFamilyMember(FamilyMember familyMember)
         {
-            if (_context.FamilyMember == null)
+            if (_context.FamilyMembers == null)
             {
                 return Problem("Entity set 'EveryPennyCountsAPIContext.FamilyMember'  is null.");
             }
-            _context.FamilyMember.Add(familyMember);
+            _context.FamilyMembers.Add(familyMember);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetFamilyMember), new { id = familyMember.FamilyMemberId }, familyMember);
@@ -100,17 +100,17 @@ namespace EveryPennyCountsAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFamilyMember(int id)
         {
-            if (_context.FamilyMember == null)
+            if (_context.FamilyMembers == null)
             {
                 return NotFound();
             }
-            var familyMember = await _context.FamilyMember.FindAsync(id);
+            var familyMember = await _context.FamilyMembers.FindAsync(id);
             if (familyMember == null)
             {
                 return NotFound();
             }
 
-            _context.FamilyMember.Remove(familyMember);
+            _context.FamilyMembers.Remove(familyMember);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -118,7 +118,7 @@ namespace EveryPennyCountsAPI.Controllers
 
         private bool FamilyMemberExists(int id)
         {
-            return (_context.FamilyMember?.Any(e => e.FamilyMemberId == id)).GetValueOrDefault();
+            return (_context.FamilyMembers?.Any(e => e.FamilyMemberId == id)).GetValueOrDefault();
         }
     }
 }

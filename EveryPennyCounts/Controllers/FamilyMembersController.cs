@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EveryPennyCounts.Models;
+using EveryPennyCountsAPI.Data;
 
 namespace EveryPennyCounts.Controllers
 {
     public class FamilyMemberController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly EveryPennyCountsAPIContext _context;
 
-        public FamilyMemberController(ApplicationDbContext context)
+        public FamilyMemberController(EveryPennyCountsAPIContext context)
         {
             _context = context;
         }

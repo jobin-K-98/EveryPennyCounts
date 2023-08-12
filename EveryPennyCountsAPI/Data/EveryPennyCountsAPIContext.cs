@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EveryPennyCountsAPI.Models;
+using EveryPennyCounts.Models;
 
 namespace EveryPennyCountsAPI.Data
 {
@@ -14,10 +14,10 @@ namespace EveryPennyCountsAPI.Data
         {
         }
 
-        public DbSet<EveryPennyCountsAPI.Models.Category> Category { get; set; } = default!;
+        public DbSet<Category> Categories { get; set; } = default!;
 
-        public DbSet<EveryPennyCountsAPI.Models.FamilyMember>? FamilyMember { get; set; }
+        public DbSet<FamilyMember> FamilyMembers { get; set; }
 
-        public DbSet<EveryPennyCountsAPI.Models.Transaction>? Transaction { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
     }
 }

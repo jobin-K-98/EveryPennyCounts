@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EveryPennyCountsAPI.Data;
-using EveryPennyCountsAPI.Models;
+using EveryPennyCounts.Models;
 
 namespace EveryPennyCountsAPI.Controllers
 {
@@ -25,22 +25,40 @@ namespace EveryPennyCountsAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Transaction>>> GetTransaction()
         {
-            if (_context.Transaction == null)
+            if (_context.Transactions == null)
             {
                 return NotFound();
             }
-            return await _context.Transaction.ToListAsync();
+            return await _context.Transactions.ToListAsync();
         }
 
         // GET: api/Transactions/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Transaction>> GetTransaction(int id)
         {
-            if (_context.Transaction == null)
+            if (_context.Transactions == null)
             {
                 return NotFound();
             }
-            var transaction = await _context.Transaction.FindAsync(id);
+            var transaction = await _context.Transactions.FindAsync(id);
+
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+
+            return transaction;
+        }
+
+        // GET: api/Transactions/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Transaction>> GetTransactionByFamilyMember(int id)
+        {
+            if (_context.Transactions == null)
+            {
+                return NotFound();
+            }
+            var transaction = await _context.Transactions.FindAsync(id);
 
             if (transaction == null)
             {
@@ -86,11 +104,11 @@ namespace EveryPennyCountsAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Transaction>> PostTransaction(Transaction transaction)
         {
-            if (_context.Transaction == null)
+            if (_context.Transactions == null)
             {
                 return Problem("Entity set 'EveryPennyCountsAPIContext.Transaction'  is null.");
             }
-            _context.Transaction.Add(transaction);
+            _context.Transactions.Add(transaction);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetTransaction), new { id = transaction.TransactionId }, transaction);
@@ -100,17 +118,17 @@ namespace EveryPennyCountsAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTransaction(int id)
         {
-            if (_context.Transaction == null)
+            if (_context.Transactions == null)
             {
                 return NotFound();
             }
-            var transaction = await _context.Transaction.FindAsync(id);
+            var transaction = await _context.Transactions.FindAsync(id);
             if (transaction == null)
             {
                 return NotFound();
             }
 
-            _context.Transaction.Remove(transaction);
+            _context.Transactions.Remove(transaction);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -118,7 +136,7 @@ namespace EveryPennyCountsAPI.Controllers
 
         private bool TransactionExists(int id)
         {
-            return (_context.Transaction?.Any(e => e.TransactionId == id)).GetValueOrDefault();
+            return (_context.Transactions?.Any(e => e.TransactionId == id)).GetValueOrDefault();
         }
     }
 }
