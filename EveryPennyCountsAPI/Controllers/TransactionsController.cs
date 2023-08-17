@@ -50,15 +50,33 @@ namespace EveryPennyCountsAPI.Controllers
             return transaction;
         }
 
+
         // GET: api/Transactions/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Transaction>> GetTransactionByFamilyMember(int id)
+        [HttpGet("Income")]
+        public async Task<ActionResult<IEnumerable<Transaction>>> GetIncomeTransaction()
         {
             if (_context.Transactions == null)
             {
                 return NotFound();
             }
-            var transaction = await _context.Transactions.FindAsync(id);
+            var transaction = await _context.Transactions.Where(x => x.Category.Type == "Income").ToArrayAsync();
+
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+
+            return transaction;
+        }
+        // GET: api/Transactions/5
+        [HttpGet("Expense")]
+        public async Task<ActionResult<IEnumerable<Transaction>>> GetExpenseTransaction()
+        {
+            if (_context.Transactions == null)
+            {
+                return NotFound();
+            }
+            var transaction = await _context.Transactions.Where(x => x.Category.Type == "Expense").ToArrayAsync();
 
             if (transaction == null)
             {

@@ -31,6 +31,41 @@ namespace EveryPennyCountsAPI.Controllers
             }
             return await _context.Categories.ToListAsync();
         }
+        // GET: api/Transactions/5
+        [HttpGet("Income")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetIncomeCategory()
+        {
+            if (_context.Categories == null)
+            {
+                return NotFound();
+            }
+            var categories = await _context.Categories.Where(x => x.Type == "Income").ToArrayAsync();
+
+            if (categories == null)
+            {
+                return NotFound();
+            }
+
+            return categories;
+        }
+
+        // GET: api/Transactions/5
+        [HttpGet("Expense")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetExpenseCategory()
+        {
+            if (_context.Categories == null)
+            {
+                return NotFound();
+            }
+            var categories = await _context.Categories.Where(x => x.Type == "Expense").ToArrayAsync();
+
+            if (categories == null)
+            {
+                return NotFound();
+            }
+
+            return categories;
+        }
 
         // GET: api/Categories/5
         [HttpGet("{id}")]

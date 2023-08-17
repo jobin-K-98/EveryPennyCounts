@@ -50,6 +50,23 @@ namespace EveryPennyCountsAPI.Controllers
             return familyMember;
         }
 
+        [HttpGet("{id}/Transactions")]
+        public async Task<ActionResult<IEnumerable<Transaction>>> GetFamilyMembersTransactions(int id)
+        {
+            if (_context.Transactions == null)
+            {
+                return NotFound();
+            }
+            var transactions = await _context.Transactions.Where(x=> x.FamilyMemberId ==id).ToArrayAsync();
+
+            if (transactions == null)
+            {
+                return NotFound();
+            }
+
+            return transactions;
+        }
+
         // PUT: api/FamilyMembers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

@@ -3,6 +3,17 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1>Every Penny Counts</h1>
+    <h3>A better way to save</h3>
+    <ul class="navbar-nav flex-grow-1">
+        <li>
+            <a class="nav-link text-light" asp-area="" asp-controller="Transaction" asp-action="Index">Transactions</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="" asp-controller="FamilyMember" asp-action="Index">Family Members</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
+        </li>
+    </ul>
 </div>
