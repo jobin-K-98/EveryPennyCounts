@@ -16,5 +16,11 @@ namespace EveryPennyCounts.Models
 
         [Column(TypeName = "nvarchar(10)")]
         public string Type { get; set; } = "Expense";
+
+        //UserID Not implemented
+        /*
+        public int UserId { get; set; }
+        public User User { get; set; }
+        */
     }
 }

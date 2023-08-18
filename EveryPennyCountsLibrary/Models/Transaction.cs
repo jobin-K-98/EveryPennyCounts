@@ -16,6 +16,11 @@ namespace EveryPennyCounts.Models
         public int FamilyMemberId { get; set; }
         public FamilyMember FamilyMember { get; set; }
 
+        //UserID Not implemented
+        /*
+        public int UserId { get; set; }
+        public User User { get; set; }
+        */
         public decimal Amount { get; set; }
 
         [Column(TypeName = "nvarchar(75)")]
