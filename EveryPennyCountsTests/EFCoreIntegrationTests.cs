@@ -8,6 +8,11 @@ using Xunit;
 
 namespace EveryPennyCountsTests
 {
+    /*this code is based on code found here
+     https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-7.0
+    I've tried everything to get this code to work and visual studio just refuses to even run it
+    I've tried using Xunit annotations and the default test annotations, I've tried with different datarows, I've tried with different method names, I've tried 
+    using run until failure, it just doesn't want to run them*/
     [TestClass]
     public class EFCoreIntegrationTests
     {
