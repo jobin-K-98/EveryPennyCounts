@@ -38,13 +38,13 @@ namespace EveryPennyCounts.Controllers
         }
 
         // GET: Category/AddOrEdit
-        public IActionResult AddOrEdit(int id=0)
-        {
-            if (id == 0)
-                return View(new Category());
-            else
-                return View(_context.Categories.Find(id));
-        }
+        //public IActionResult AddOrEdit(int id=0)
+        //{
+            //if (id == 0)
+                //return View(new Category());
+            //else
+                //return View(_context.Categories.Find(id));
+        //}
 
         // POST: Category/AddOrEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
