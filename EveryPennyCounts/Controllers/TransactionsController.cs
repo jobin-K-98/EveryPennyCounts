@@ -22,9 +22,8 @@ namespace EveryPennyCounts.Controllers
         // GET: Transaction
         public async Task<IActionResult> Index()
         {
-            return _context.Transactions != null ?
-                        View(await _context.Transactions.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Transactions'  is null.");
+            var applicationDbContext = _context.Transactions.Include(t => t.Category);
+            return View(await applicationDbContext.ToListAsync());
         }
 
 
