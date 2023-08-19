@@ -44,7 +44,7 @@ namespace EveryPennyCounts.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("TransactionId,Title,Icon,Type")] Transaction Transaction)
+        public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction Transaction)
         {
             if (ModelState.IsValid)
             {
